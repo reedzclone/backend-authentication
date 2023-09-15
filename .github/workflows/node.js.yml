@@ -31,8 +31,9 @@ jobs:
     - name: SSH Remote Commands
       uses: appleboy/ssh-action@v1.0.0
       with:
-       key: ${{secrets.Reedz Key}}
-       host: ${{secrets.DIGITAL_OCEAN_PORT}}
+       host: ${{secrets.DIGITAL_OCEAN_HOST}}
+       key: ${{secrets.DIGITAL_OCEAN_SSH}}
+       port: ${{secrets.DIGITAL_OCEAN_PORT}}
        username: ${{secrets.USERNAME}}
        script: whoami
    
