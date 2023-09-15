@@ -36,5 +36,10 @@ jobs:
        port: ${{secrets.DIGITAL_OCEAN_PORT}}
        passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
        username: ${{secrets.USERNAME}}
-       script: whoami
+       script: |
+        pm2 delete all
+        cd /documents/angular-work/authentication-backend/server
+        git pull
+        npm install
+        pm2 start npm -- start
    
