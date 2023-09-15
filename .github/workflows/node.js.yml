@@ -34,6 +34,7 @@ jobs:
        host: ${{secrets.DIGITAL_OCEAN_HOST}}
        key: ${{secrets.DIGITAL_OCEAN_SSH}}
        port: ${{secrets.DIGITAL_OCEAN_PORT}}
+       passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
        username: ${{secrets.USERNAME}}
        script: whoami
    
