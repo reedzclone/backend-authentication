@@ -38,6 +38,7 @@ jobs:
        username: ${{secrets.USERNAME}}
        script_stop: true
        script: |
+        cd /backend-authentication/server
         git pull
         npm install
         npm start
