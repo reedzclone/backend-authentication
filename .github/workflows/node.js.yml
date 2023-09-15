@@ -38,7 +38,7 @@ jobs:
        username: ${{secrets.USERNAME}}
        script_stop: true
        script: |
-        cd /backend-authentication/server
+        cd /documents/angular-work/authentication-backend/server
         git pull
         npm install
         npm start
