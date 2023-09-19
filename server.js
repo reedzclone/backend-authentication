@@ -2,16 +2,16 @@ const express = require("express");
 const cors = require("cors");
 
 const PORT = 3000;
-const api = require('./routes/api')
+const api = require("./routes/api");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', api)
+app.use("/api", api);
 
 app.get("/", (req, res) => {
-  res.send("Hello worlds");
+  res.send("Hello world here we go");
 });
 
 app.listen(PORT, console.log(`Serve running on ${PORT}`));
