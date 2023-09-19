@@ -20,26 +20,24 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - name: SSH Remote Commands
       uses: appleboy/ssh-action@v1.0.0
       with:
-       host: ${{secrets.DIGITAL_OCEAN_HOST}}
-       key: ${{secrets.DIGITAL_OCEAN_SSH}}
-       port: ${{secrets.DIGITAL_OCEAN_PORT}}
-       passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
-       username: ${{secrets.USERNAME}}
-       script_stop: true
-       script: |
-        cd /documents/angular-work/authentication-backend/server
-        git pull
-        npm install
-        npm start
+         host: ${{secrets.DIGITAL_OCEAN_HOST}}
+         key: ${{secrets.DIGITAL_OCEAN_SSH}}
+         port: ${{secrets.DIGITAL_OCEAN_PORT}}
+         passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
+         username: ${{secrets.USERNAME}}
+         script_stop: true
+         script: |
+          cd backend-authentication
+          git stash
+          git checkout main
+          git pull origin main
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          nvm use 18
+          git pull
+          npm install
+          npm start
    
