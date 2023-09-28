@@ -24,7 +24,7 @@ jobs:
       uses: appleboy/ssh-action@v1.0.0
       with:
          host: ${{secrets.DIGITAL_OCEAN_HOST}}
-         key: ${{secrets.DIGITAL_OCEAN_SSH}
+         key: ${{secrets.DIGITAL_OCEAN_SSH}}
          passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
          username: ${{secrets.USERNAME}}
          script_stop: true
