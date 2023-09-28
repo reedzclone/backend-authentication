@@ -26,7 +26,7 @@ jobs:
           key: ${{secrets.DIGITAL_OCEAN_SSH}}
           port: ${{secrets.DIGITAL_OCEAN_PORT}}
           passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
-          username: ${{secrets.USERNAME}}
+          username: ${{secrets.STAGING_USERNAME}}
           script_stop: true
           script: |
             cd backend-authentication
