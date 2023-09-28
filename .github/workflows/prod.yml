@@ -1,0 +1,41 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: ["staging"]
+  pull_request:
+    branches: ["staging"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.DIGITAL_OCEAN_HOST}}
+          key: ${{secrets.DIGITAL_OCEAN_SSH}}
+          port: ${{secrets.DIGITAL_OCEAN_PORT}}
+          passphrase: ${{secrets.DIGITAL_OCEAN_SSH_PASSPHRASE}}
+          username: ${{secrets.USERNAME}}
+          script_stop: true
+          script: |
+            cd backend-authentication
+            git stash
+            git checkout main
+            git pull origin main
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            nvm use 18
+            git pull
+            npm install
+            npm start
